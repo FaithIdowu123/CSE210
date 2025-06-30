@@ -59,10 +59,10 @@ class Program
             Grade = "F";
         }
 
-        Console.WriteLine($"Your grade is {Grade}");
+        Console.WriteLine($"Your grade is {Grade}.");
         if (percent >= 60)
         {
-            Console.WriteLine("Congratulations!!!");
+            Console.WriteLine("Congratulations!!! You passed.");
         }
         else
         {

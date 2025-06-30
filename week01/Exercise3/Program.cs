@@ -29,8 +29,8 @@ class Program
                 }
                 else
                 {
-                    Console.WriteLine("You guessed it");
-                    Console.WriteLine($"You guessed {guesses} times");
+                    Console.WriteLine("You guessed it!!");
+                    Console.WriteLine($"You guessed {guesses} times.");
                     Console.Write("Do you want to play again?(Yes/No) ");
                     input = Console.ReadLine();
                     if (input == "Yes")
