@@ -1,4 +1,7 @@
-﻿using System;
+﻿/*From my exceeding the requirements I added a new variable to the entry class named _time and made it so
+when the uses wants to display, load or save their journal the time is also included.*/
+
+using System;
 using System.Collections.Generic;
 
 class Program
@@ -23,6 +26,8 @@ class Program
         Prompts._prompts.Add("How did I see the hand of the Lord in my life today?");
         Prompts._prompts.Add("What was the strongest emotion I felt today?");
         Prompts._prompts.Add("If I had one thing I could do over today, what would it be?");
+        Prompts._prompts.Add("What was the worst part of your day?");
+
 
 
         Console.WriteLine("Welcome to thee Journal Program!");
@@ -46,11 +51,14 @@ class Program
                 Console.Write(prompt);
                 string? response = Console.ReadLine();
                 DateTime theCurrentTime = DateTime.Now;
+
                 string dateText = theCurrentTime.ToShortDateString();
+                string timeText = theCurrentTime.ToShortTimeString();
 
                 entry._prompt = prompt;
                 entry._response = response;
                 entry._dateTime = dateText;
+                entry._time = timeText;
 
                 journal._entries.Add(entry);
             }
