@@ -50,12 +50,6 @@ class Program
                 {
                     S.HideRandomWords(2);
                 }
-                else
-                {
-                    Console.Clear();
-                    text = S.GetDisplayText();
-                    Console.WriteLine(text);
-                }
             }
             else if (option == "quit")
             {

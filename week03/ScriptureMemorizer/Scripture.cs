@@ -62,10 +62,6 @@ public class Scripture
         }
         if (number >= _words.Count())
         {
-            foreach (Word word in _words)
-            {
-                word.Show();
-            }
             return true;
         }
         else
