@@ -10,7 +10,9 @@ class Video
         Console.WriteLine($"Title: {_title}");
         Console.WriteLine($"Author: {_author}");
         Console.WriteLine($"Length: {_length}");
-        Console.WriteLine($"Comment section ({_comments.Count()})");
+        Console.WriteLine("");
+        Console.WriteLine($"Comment Section ({_comments.Count()})");
+        Console.WriteLine("");
         foreach (Comment comment in _comments)
         {
             comment.DisplayCommentDetails();
