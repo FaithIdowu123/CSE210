@@ -1,7 +1,5 @@
 ﻿//For my exceeding the requirements, I created a new txt and cs class file file with a few scriptures,
 //and made it so that the program randomly selects one of the scripture for the user to memorize.
-// I also made it so that the scripture re-apeaper, when all the words are hidden,
-// in order for the user to check if they were able to memorize it.
 using System;
 using System.Numerics;
 
