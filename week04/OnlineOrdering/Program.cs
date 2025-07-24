@@ -17,7 +17,7 @@ class Program
         products1.Add(P3);
 
         Address A1 = new Address("Navy estate", "Obada-Oko", "Ogun state", "Nigeria");
-        Customer C1 = new Customer("Faith", A1);
+        Customer C1 = new Customer("Faith Idowu", A1);
         Order order1 = new Order(C1, products1);
 
         List<Product> products2 = new List<Product>();
@@ -26,7 +26,7 @@ class Program
         products2.Add(P6);
 
         Address A2 = new Address("Oke-Ata Housing Estate", "Abeokuta", "Ogun state", "USA");
-        Customer C2 = new Customer("Isaiah", A2);
+        Customer C2 = new Customer("Isaiah Raph", A2);
         Order order2 = new Order(C2, products2);
 
         List<Product> products3 = new List<Product>();
@@ -35,7 +35,7 @@ class Program
         products3.Add(P3);
 
         Address A3 = new Address("Ajebo Road", "Abeokuta", "Ogun state", "Nigeria");
-        Customer C3 = new Customer("Tise", A3);
+        Customer C3 = new Customer("Tise Ayo", A3);
         Order order3 = new Order(C3, products3);
 
         List<Order> orders = new List<Order>();
