@@ -24,7 +24,7 @@ class ReflectingActivity : Activity
         Console.WriteLine("");
         Console.Write("When you have something in mind, press enter to continue.\n\b");
         string C = Console.ReadLine();
-        Console.WriteLine("Now ponder on each of thee following questions as theie related to the experience.");
+        Console.WriteLine("Now ponder on each of thee following questions as their related to the experience.");
         Console.Write("You may begin in: ");
         ShowCountDown(5);
         Console.WriteLine("");

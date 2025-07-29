@@ -60,11 +60,11 @@ class Program
         }
         else if (tracker > 1)
         {
-            Console.WriteLine($"You performed {tracker} activities during you session.");
+            Console.WriteLine($"You performed {tracker} activities during your session.");
         }
         else
         {
-            Console.WriteLine($"You performed {tracker} activities during you session.");
+            Console.WriteLine($"You performed {tracker} activities during your session.");
         }
             
         Console.WriteLine("Bye for now.");
