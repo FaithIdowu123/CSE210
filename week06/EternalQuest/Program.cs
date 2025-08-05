@@ -1,9 +1,12 @@
+// For my exceeding expectations, I added a new variable List<Goal> called _completedGoals and stored the completed goals in it, I also saved the completed goals in a txt file and created new methods for saving and loading it.
+// I also made it so that completed will only appear the list completed goals option.
 using System;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the EternalQuest Project.");
+        GoalManager goalManager = new GoalManager();
+        goalManager.Start();
     }
 }
