@@ -297,7 +297,6 @@ public class GoalManager
         
         foreach (var line in goals)
         {
-            Console.WriteLine(goals[0]);
             string[] part = line.Split(":");
 
             if (part.Length < 2)
