@@ -18,10 +18,10 @@ public class CheckListGoal : Goal
         if (_target > _amountCompleted)
         {
             _amountCompleted++;
-        }
-        else if (_target == _amountCompleted)
-        {
-            _completed = iscomplete();
+            if (_target == _amountCompleted)
+            {
+                _completed = iscomplete();
+            }
         }
     }
 
