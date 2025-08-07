@@ -1,0 +1,4 @@
+EternalGoal:dgdgh|geg|80
+CheckListGoal:dfgdf|gdg|40|90|2|1
+SimpleGoal:hh|trh|30|False
+SimpleGoal:sfgsf|gg|80|False

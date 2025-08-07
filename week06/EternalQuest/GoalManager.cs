@@ -378,7 +378,6 @@ public class GoalManager
 
     public void GetCompleted()
     {
-        int i = -1;
         if (_goals.Count() == 0)
         {
 
@@ -387,11 +386,10 @@ public class GoalManager
         {
             foreach (Goal goal in _goals.ToList())
             {
-                i++;
                 if (goal.GetComplete())
                 {
                     _completedGoals.Add(goal);
-                    _goals.RemoveAt(i);
+                    _goals.Remove(goal);
                 }
             }
         }
