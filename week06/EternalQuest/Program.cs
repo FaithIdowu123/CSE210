@@ -1,4 +1,4 @@
-// For my exceeding expectations, i made it that whenever the user gets 15 points, their level increases by one. 
+// For my exceeding expectations, i made it that whenever the user gets 20 points, their level increases by one. 
 using System;
 
 class Program
