@@ -6,7 +6,6 @@ public class GoalManager
     private int _score = 0;
     private int _pointsNeeded = 20;
     private int _level = 1;
-    private List<Goal> _completedGoals = new List<Goal>();
 
 
     public GoalManager()
