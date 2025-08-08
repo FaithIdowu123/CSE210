@@ -33,11 +33,10 @@ public class GoalManager
             Console.WriteLine("Menu options:");
             Console.WriteLine("  1. Create New Goal.");
             Console.WriteLine("  2. List Goals.");
-            Console.WriteLine("  3. List Completed Goals.");
-            Console.WriteLine("  4. Save Goals.");
-            Console.WriteLine("  5. Load Goals.");
-            Console.WriteLine("  6. Record Event.");
-            Console.WriteLine("  7. Quit");
+            Console.WriteLine("  3. Save Goals.");
+            Console.WriteLine("  4. Load Goals.");
+            Console.WriteLine("  5. Record Event.");
+            Console.WriteLine("  6. Quit");
             Console.Write("Select a choice from the menu: ");
 
             string choice = Console.ReadLine();
@@ -88,38 +87,21 @@ public class GoalManager
                     Console.WriteLine("Oops! Sorry, you don't have any active goals.");
                 }
             }
+            
             else if (option == 3)
-            {
-                Console.WriteLine("");
-                if (_completedGoals.Count() != 0)
-                {
-                    Console.WriteLine("This is a list of completed goals: ");
-                    int i = 0;
-                    foreach (Goal goal in _completedGoals)
-                    {
-                        i++;
-                        Console.WriteLine($"{i}. {ListDetails(goal)}");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Oops! Sorry, you don't have any active goals.");
-                }
-            }
-            else if (option == 4)
             {
                 Console.Write("What is the filename for the goal file? ");
                 string filename = Console.ReadLine();
                 SaveGoal(filename);
 
             }
-            else if (option == 5)
+            else if (option == 4)
             {
                 Console.Write("What is the filename for the goal file? ");
                 string filename = Console.ReadLine();
                 LoadGoals(filename);
             }
-            else if (option == 6)
+            else if (option == 5)
             {
                 Console.WriteLine("");
                 if (_goals.Count() != 0)
@@ -168,7 +150,7 @@ public class GoalManager
                     Console.WriteLine("Oops! Sorry, you don't have any active goals.");
                 }
             }
-            else if (option == 7)
+            else if (option == 6)
             {
                 stop = true;
             }
@@ -334,14 +316,10 @@ public class GoalManager
     {
         _level = 1;
         int points = _score;
-        while (points != 0)
+        while (points > _pointsNeeded)
         {
             points -= _pointsNeeded;
             _level += 1;
-            if (points < _pointsNeeded)
-            {
-                points = 0;
-            }
         }
     }
 }
