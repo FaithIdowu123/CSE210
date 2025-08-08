@@ -4,6 +4,8 @@ public class GoalManager
 {
     private List<Goal> _goals = new List<Goal>();
     private int _score = 0;
+    private int _pointsNeeded = 20;
+    private int _level = 1;
     private List<Goal> _completedGoals = new List<Goal>();
 
 
@@ -14,6 +16,7 @@ public class GoalManager
 
     public void DisplayPlayerInfo()
     {
+        Console.WriteLine($"Level: {_level}");
         Console.WriteLine($"You have {_score} points.");
     }
 
@@ -22,7 +25,7 @@ public class GoalManager
         bool stop = false;
         while (!stop)
         {
-
+            levelup();
             Console.WriteLine("");
             DisplayPlayerInfo();
             Console.WriteLine("");
@@ -36,7 +39,6 @@ public class GoalManager
             Console.WriteLine("  6. Record Event.");
             Console.WriteLine("  7. Quit");
             Console.Write("Select a choice from the menu: ");
-            GetCompleted();
 
             string choice = Console.ReadLine();
             int option = int.Parse(choice);
@@ -110,14 +112,12 @@ public class GoalManager
                 string filename = Console.ReadLine();
                 SaveGoal(filename);
 
-                SaveCompletedGoal("completedGoals");
             }
             else if (option == 5)
             {
                 Console.Write("What is the filename for the goal file? ");
                 string filename = Console.ReadLine();
                 LoadGoals(filename);
-                LoadCompletedGoals("completedGoals");
             }
             else if (option == 6)
             {
@@ -136,11 +136,28 @@ public class GoalManager
                     int answer = int.Parse(choice) - 1;
 
                     RecordEvent(_goals[answer]);
+                    
                     int points = _goals[answer].GetPoints() + _goals[answer].GetBonus();
+                    if (_goals[answer].GetComplete())
+                    {
+                        _goals[answer].SetPoints();
+                        _goals[answer].SetBonus();
+                    }
+                    
                     _score += points;
+                    int previousLevel = _level;
 
-                    Console.WriteLine($"Congratulation! You just earned {points} points!");
-                    Console.WriteLine($"You now have {_score} points.");
+                    levelup();
+                    if (points != 0)
+                    {
+                        Console.WriteLine($"Congratulation! You just earned {points} points!");
+                        Console.WriteLine($"You now have {_score} points.");
+                    }
+                    
+                    if (previousLevel < _level)
+                    {
+                        Console.WriteLine($"You are now level {_level}");
+                    }
                 }
                 else
                 {
@@ -181,6 +198,7 @@ public class GoalManager
             SimpleGoal simpleGoal = new SimpleGoal(name, description, points);
 
             _goals.Add(simpleGoal);
+
         }
         else if (goal == "EternalGoal")
         {
@@ -197,6 +215,7 @@ public class GoalManager
             EternalGoal eternalGoal = new EternalGoal(name, description, points);
 
             _goals.Add(eternalGoal);
+
         }
         else if (goal == "CheckListGoal")
         {
@@ -221,6 +240,7 @@ public class GoalManager
             CheckListGoal checkListGoal = new CheckListGoal(name, description, points, bonus, target);
 
             _goals.Add(checkListGoal);
+
         }
     }
 
@@ -233,10 +253,14 @@ public class GoalManager
     {
         string[] lines = System.IO.File.ReadAllLines(filename);
         List<string> goals = lines.ToList();
+        _score = int.Parse(goals[0]);
+        goals.RemoveAt(0);
 
         foreach (var line in goals)
         {
             string[] part = line.Split(":");
+
+
 
             string goal = part[0];
             string info = part[1];
@@ -253,6 +277,7 @@ public class GoalManager
                 simpleGoal.RecordEvent();
 
                 _goals.Add(simpleGoal);
+
             }
             else if (goal == "EternalGoal")
             {
@@ -264,6 +289,7 @@ public class GoalManager
                 EternalGoal eternalGoal = new EternalGoal(name, description, points);
 
                 _goals.Add(eternalGoal);
+
             }
             else if (goal == "CheckListGoal")
             {
@@ -283,72 +309,7 @@ public class GoalManager
                 }
 
                 _goals.Add(checkListGoal);
-            }
-        }
-    }
 
-    public void LoadCompletedGoals(string filename)
-    {
-        string[] lines = System.IO.File.ReadAllLines(filename);
-        _score = int.Parse(lines[0]);
-        List<string> goals = lines.ToList();
-
-        goals.RemoveAt(0);
-        
-        foreach (var line in goals)
-        {
-            string[] part = line.Split(":");
-
-            if (part.Length < 2)
-            {
-                continue;
-            }
-
-            string goal = part[0];
-            string info = part[1];
-
-            if (goal == "SimpleGoal")
-            {
-                string[] details = info.Split("|");
-                string name = details[0];
-                string description = details[1];
-                int points = int.Parse(details[2]);
-                bool iscomplete = bool.Parse(details[3]);
-
-                SimpleGoal simpleGoal = new SimpleGoal(name, description, points);
-                simpleGoal.RecordEvent();
-
-                _completedGoals.Add(simpleGoal);
-            }
-            else if (goal == "EternalGoal")
-            {
-                string[] details = info.Split("|");
-                string name = details[0];
-                string description = details[1];
-                int points = int.Parse(details[2]);
-
-                EternalGoal eternalGoal = new EternalGoal(name, description, points);
-
-                _completedGoals.Add(eternalGoal);
-            }
-            else if (goal == "CheckListGoal")
-            {
-                string[] details = info.Split("|");
-                string name = details[0];
-                string description = details[1];
-                int points = int.Parse(details[2]);
-                int bonus = int.Parse(details[3]);
-                int target = int.Parse(details[4]);
-                int amountCompleted = int.Parse(details[5]);
-
-                CheckListGoal checkListGoal = new CheckListGoal(name, description, points, bonus, target);
-
-                for (int i = amountCompleted; i > 0; i--)
-                {
-                    checkListGoal.RecordEvent();
-                }
-
-                _completedGoals.Add(checkListGoal);
             }
         }
     }
@@ -357,40 +318,25 @@ public class GoalManager
     {
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
+            outputFile.WriteLine(_score);
             foreach (Goal goal in _goals)
             {
                 outputFile.WriteLine(goal.GetSaveableString());
             }
         }
     }
-    
-    public void SaveCompletedGoal(string filename)
-    {  
-        using (StreamWriter outputFile = new StreamWriter(filename))
-        {
-            outputFile.WriteLine(_score);
-            foreach (Goal goal in _completedGoals)
-            {
-                outputFile.WriteLine(goal.GetSaveableString());
-            }
-        }
-    }
 
-    public void GetCompleted()
+    public void levelup()
     {
-        if (_goals.Count() == 0)
+        _level = 1;
+        int points = _score;
+        while (points != 0)
         {
-
-        }
-        else
-        {
-            foreach (Goal goal in _goals.ToList())
+            points -= _pointsNeeded;
+            _level += 1;
+            if (points < _pointsNeeded)
             {
-                if (goal.GetComplete())
-                {
-                    _completedGoals.Add(goal);
-                    _goals.Remove(goal);
-                }
+                points = 0;
             }
         }
     }

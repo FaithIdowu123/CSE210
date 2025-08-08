@@ -48,7 +48,7 @@ public class CheckListGoal : Goal
     }
 
     public override int GetBonus()
-    {  
+    {
         if (_target == _amountCompleted)
         {
             return _bonus;
@@ -59,5 +59,10 @@ public class CheckListGoal : Goal
     public override bool GetComplete()
     {
         return _completed;
+    }
+    
+    public override void SetBonus()
+    {
+        _bonus = 0;
     }
 }

@@ -27,4 +27,5 @@ public class SimpleGoal : Goal
     {
         return _iscomplete;
     }
+
 }

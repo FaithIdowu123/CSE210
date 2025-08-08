@@ -4,6 +4,7 @@ public abstract class Goal
     private string _description;
     private int _points;
 
+
     public Goal(string name, string description, int points)
     {
         _name = name;
@@ -52,5 +53,15 @@ public abstract class Goal
     public virtual bool GetComplete()
     {
         return false;
+    }
+
+    public void SetPoints()
+    {
+        _points = 0;
+    }
+
+    public virtual void SetBonus()
+    {
+        
     }
 }
