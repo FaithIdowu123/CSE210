@@ -153,10 +153,14 @@ public class GoalManager
                         Console.WriteLine($"Congratulation! You just earned {points} points!");
                         Console.WriteLine($"You now have {_score} points.");
                     }
+                    else
+                    {
+                        Console.WriteLine("Oops! Sorry, you have already completed that goal.");
+                    }
                     
                     if (previousLevel < _level)
                     {
-                        Console.WriteLine($"You are now level {_level}");
+                        Console.WriteLine($"You are now level {_level}.");
                     }
                 }
                 else
