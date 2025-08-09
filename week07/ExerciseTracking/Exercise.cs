@@ -65,13 +65,14 @@ public abstract class Exercise
         
     }
 
-    public void GetSummary()
+    public string GetSummary()
     {
         double distance = Math.Round(_distance, 2);
         double speed = Math.Round(_speed, 2);
         double pace = Math.Round(_pace, 2);
         string date = _date.ToString("dd MMM yyyy", new CultureInfo("en-US"));
-        Console.WriteLine($"{date} {_activity} ({_minutes}min) - Distance: {distance} km, Speed: {speed} kph, Pace: {pace} min per km");
+        string summary = $"{date} {_activity} ({_minutes}min) - Distance: {distance} km, Speed: {speed} kph, Pace: {pace} min per km";
+        return summary;
     }
 
 }

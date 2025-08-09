@@ -25,7 +25,8 @@ class Program
 
         foreach (Exercise exercise in exercises)
         {
-            exercise.GetSummary();
+            string summary = exercise.GetSummary();
+            Console.WriteLine(summary);
         }
     }
 }
