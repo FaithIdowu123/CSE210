@@ -1,22 +1,28 @@
 public class Cycling : Exercise
 {
-    public Cycling(string activity, int minutes, DateTime date) : base(activity, minutes, date)
+    private double _speed;
+    
+    public Cycling(string activity, double speed, int minutes, DateTime date) : base(activity, minutes, date)
     {
-
+        _speed = speed;
     }
 
-    public override void CalculatePace()
+    public override double GetSpeed()
     {
-        double speed = GetSpeed();
-        double pace = 60 / speed;
-        SetPace(pace);
+        return _speed;
     }
 
-    public override void CalculateDistance()
+
+    public override double GetPace()
     {
-        double pace = GetPace();
+        double pace = 60 / GetSpeed();
+        return pace;
+    }
+
+    public override double GetDistance()
+    {
         int minutes = GetMinutes();
-        double distance = minutes / pace;
-        SetDistance(distance);
+        double distance = minutes / GetPace();
+        return distance;
     }
 }

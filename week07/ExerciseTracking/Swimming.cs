@@ -7,24 +7,24 @@ public class Swimming : Exercise
         _laps = laps;
     }
 
-    public override void CalculateDistance()
+    public override double GetDistance()
     {
         double distance = (double)_laps * 50 / 100;
-        SetDistance(distance);
+        return distance;
     }
 
-    public override void CalculatePace()
+    public override double GetPace()
     {
         int minutes = GetMinutes();
-        double distance = GetDistance();
-        double pace = minutes / distance;
-        SetPace(pace);
+        double pace = minutes / GetDistance();
+        return pace;
     }
 
-    public override void CalculateSpeed()
+    public override double GetSpeed()
     {
-        double pace = GetPace();
-        double speed = 60 / pace;
-        SetSpeed(speed);
+        double speed = 60 / GetPace();
+        return speed;
     }
+
+    
 }
